@@ -1,3 +1,14 @@
+body{
+    font-family: sans-serif;
+
+}
+
+h3{
+    color: blue;
+    font-size: 30px;
+    margin: 0;
+}
+
 ul {
     list-style: none;
     display: flex;
@@ -17,4 +28,32 @@ li {
 
 li:hover {
     background-color: yellow;
+}
+
+li.clicked {
+    background-color: white;
+    
+}
+li.clicked.x::before {
+    content: "X";
+    font-size: 60px;
+    font-family: sans-serif;
+    display: block;
+    /* margin: 0 auto; */
+    width: 100%;
+    line-height: 100px;
+    padding: 0 auto;
+
+}
+li.clicked.o::before {
+    content: "O";
+    font-size: 60px;
+    font-family: sans-serif;
+    display: block;
+    /* margin: 0 auto; */
+    width: 100%;
+    line-height: 100px;
+    padding: 0 auto;
+
+
 }

@@ -126,7 +126,7 @@ eval("\nconst MoveError = function (msg) { this.msg = msg; };\n\n// MoveError re
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const View = __webpack_require__(/*! ./ttt-view */ \"./src/ttt-view.js\")\nconst Game = __webpack_require__(/*! ../../tictactoe/game */ \"../tictactoe/game.js\")\n\n  $(() => {\n    // Your code here\n    console.log(\"DOM loaded\")\n    const game = new Game();\n    const $el = $(\".ttt\");\n\n    new View(game, $el);\n\n  }); \n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const View = __webpack_require__(/*! ./ttt-view */ \"./src/ttt-view.js\")\nconst Game = __webpack_require__(/*! ../../tictactoe/game */ \"../tictactoe/game.js\")\n\n  $(() => {\n    // Your code here\n    console.log(\"DOM loaded\")\n    const game = new Game();\n    const $el = $(\".ttt\");\n\n    const view = new View(game, $el);\n    view.bindEvents();\n\n  }); \n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -137,7 +137,7 @@ eval("const View = __webpack_require__(/*! ./ttt-view */ \"./src/ttt-view.js\")\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("class View {\n  constructor(game, $el) {\n    this.game = game;\n    this.$el = $el;\n    this.setupBoard()\n  }\n\n  bindEvents() {\n    \n  }\n\n  makeMove($square) {}\n\n  setupBoard() {\n    const $ul = $(\"<ul></ul>\");\n    this.$el.append($ul);\n\n    // if ($li.attr(\"class\") === \"unclicked\") {\n      \n    // }\n\n    for (let i = 1; i <= 9; i++) {\n      let $li = $(\"<li></li>\");\n      $ul.append($li);\n    }\n  }\n}\n\nmodule.exports = View;\n\n\n//# sourceURL=webpack:///./src/ttt-view.js?");
+eval("class View {\n  constructor(game, $el) {\n    this.game = game;\n    this.$el = $el;\n    this.setupBoard()\n  }\n\n  bindEvents() {\n    this.$el.on(\"click\", \"li\", event => {\n      const selected = $(event.currentTarget);\n      this.makeMove(selected);\n    })\n    \n  }\n\n  makeMove($square) {\n    // $square.css(\"background-color\", \"white\");\n    try{\n    const currentPlayer = this.game.currentPlayer;\n    this.game.playMove($square.data(\"pos\"))\n    $square.addClass(\"clicked\");\n    $square.addClass(currentPlayer);\n  }\n  catch(e){\n      alert(e.msg);\n    }\n    if (this.game.isOver()){\n      let $h3 = $(\"<h3></h3>\");\n      $h3.text(`${this.game.winner()} has won the game!`);\n      this.$el.append($h3);\n      $(\"li\").css(\"color\", \"red\");\n      $(`li.clicked.${this.game.winner()}`).css(\"backgroundColor\", \"green\");\n      $(`li.clicked.${this.game.winner()}`).css(\"color\", \"white\");\n      this.$el.off(\"click\");\n    }\n  }\n\n\n  setupBoard() {\n    const $ul = $(\"<ul></ul>\");\n    this.$el.append($ul);\n\n\n    // if ($li.attr(\"class\") === \"unclicked\") {\n      \n    // }\n\n    for (let i = 0; i < 3; i++) {\n      for (let j = 0; j < 3; j++) {\n        let $li = $(\"<li></li>\");\n        $li.data(\"pos\", [i,j])\n        $ul.append($li);\n      }\n    }\n  }\n}\n\nmodule.exports = View;\n\n\n//# sourceURL=webpack:///./src/ttt-view.js?");
 
 /***/ })
 

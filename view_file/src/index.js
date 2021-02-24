@@ -7,6 +7,7 @@ const Game = require("../../tictactoe/game")
     const game = new Game();
     const $el = $(".ttt");
 
-    new View(game, $el);
+    const view = new View(game, $el);
+    view.bindEvents();
 
   }); 
