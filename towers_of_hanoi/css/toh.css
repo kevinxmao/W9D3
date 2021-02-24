@@ -1,0 +1,60 @@
+.hanoi {
+    display: flex;
+    /* margin: 0 auto; */
+    justify-content: space-evenly;
+}
+
+h1 {
+    margin: 20px auto;
+}
+
+ul {
+    list-style: none;
+    display: block;
+    /* flex-direction: column-reverse;
+    justify-content: center; */
+    border-bottom: 10px solid black;
+    padding: 0 0 10px 0;
+    width: 180px;
+}
+
+ul:hover {
+    border-color: blue;
+    cursor: pointer;
+}
+
+ul.selected {
+    border-color: red;
+}
+
+li {
+    /* background-color: gray; */
+    height: 50px;
+    margin: 10px auto;
+    border-radius: 25px;
+    width: 0;
+}
+
+li.three {
+    background-image: url("../assets/lakhte.png");
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover;
+    width: 180px;
+}
+
+li.two {
+    background-image: url("../assets/marco.png");
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover;
+    width: 120px;
+}
+
+li.one {
+    background-image: url("../assets/andrew.png");
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover;
+    width: 60px;
+}
